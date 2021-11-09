@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>final, static, this, super关键字 | bixby博客</title><meta name="author" content="bixby"><meta name="copyright" content="bixby"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="final, static, this, super关键字final关键字 final关键字,修饰的类、方法、变量是不可变的（不可修改）：  final修饰的类无法被继承，类中的所有成员方法都会隐式的指定为final类型； final修饰的方法不能被重写； final修饰的变量是常量，如果是基本数据类型的变量，则数据一旦在初始化之后被不能被更改，如果是引用类型的变量，则在对其初始化之后便不能在指向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="final, static, this, super关键字">
+<meta property="og:url" content="https://bixby-cell.github.io/2021/08/23/interview/index.html">
+<meta property="og:site_name" content="bixby博客">
+<meta property="og:description" content="final, static, this, super关键字final关键字 final关键字,修饰的类、方法、变量是不可变的（不可修改）：  final修饰的类无法被继承，类中的所有成员方法都会隐式的指定为final类型； final修饰的方法不能被重写； final修饰的变量是常量，如果是基本数据类型的变量，则数据一旦在初始化之后被不能被更改，如果是引用类型的变量，则在对其初始化之后便不能在指向">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg">
+<meta property="article:published_time" content="2021-08-23T02:54:09.948Z">
+<meta property="article:modified_time" content="2021-11-09T13:06:39.438Z">
+<meta property="article:author" content="bixby">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bixby-cell.github.io/2021/08/23/interview/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'final, static, this, super关键字',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-09 21:06:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/34.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">bixby博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">final, static, this, super关键字</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-23T02:54:09.948Z" title="发表于 2021-08-23 10:54:09">2021-08-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-09T13:06:39.438Z" title="更新于 2021-11-09 21:06:39">2021-11-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="final, static, this, super关键字"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="final-static-this-super关键字"><a href="#final-static-this-super关键字" class="headerlink" title="final, static, this, super关键字"></a>final, static, this, super关键字</h1><h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><blockquote>
+<p>final关键字,修饰的类、方法、变量是不可变的（不可修改）：</p>
+<ul>
+<li>final修饰的类无法被继承，类中的所有成员方法都会隐式的指定为final类型；</li>
+<li>final修饰的方法不能被重写；</li>
+<li>final修饰的变量是常量，如果是基本数据类型的变量，则数据一旦在初始化之后被不能被更改，如果是引用类型的变量，则在对其初始化之后便不能在指向另外一个对象。</li>
+</ul>
+</blockquote>
+<h2 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h2><blockquote>
+<ul>
+<li><strong>修饰成员变量和成员方法：</strong>被static修饰的成员属于类，不属于单个这个类的对象，被类中所有对象共享，可以并且建议通过类名的方式调用。被static声明的成员变量属于静态成员变量，静态变量存放在Java内存区域的方法区。调用格式：<code>类名.静态变量名  类名.静态方法名()</code></li>
+<li><strong>静态代码块:</strong> 静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块—&gt;非静态代码块—&gt;构造方法)。 该类不管创建多少对象，静态代码块只执行一次.</li>
+<li><strong>静态内部类（static修饰类的话只能修饰内部类）：</strong> 静态内部类与非静态内部类之间存在一个最大的区别: 非静态内部类在编译完成之后会隐含地保存着一个引用，该引用是指向创建它的外围类，但是静态内部类却没有。没有这个引用就意味着：1. 它的创建是不需要依赖外围类的创建。2. 它不能使用任何外围类的非static成员变量和方法。</li>
+<li><strong>静态导包(用来导入类中的静态资源，1.5 之后的新特性):</strong> 格式为：<code>import static</code> 这两个关键字连用可以指定导入某个类中的指定静态资源，并且不需要使用类名调用类中静态成员，可以直接使用类中静态成员变量和成员方法。</li>
+</ul>
+</blockquote>
+<h2 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h2><blockquote>
+<p>this关键字用于引用当前实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span> </span>&#123;</span><br><span class="line">    Employees[] employees;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">manageEmployees</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> totalEmp = <span class="keyword">this</span>.employees.length;</span><br><span class="line">        System.out.println(<span class="string">&quot;Total employees: &quot;</span> + totalEmp);</span><br><span class="line">        <span class="keyword">this</span>.report();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">report</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>this.employees.length:访问类的Manager的当前实例变量</li>
+<li>this.report():调用类Manger的当前实例的方法</li>
+</ul>
+</blockquote>
+<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><blockquote>
+<p>super关键字用于从子类访问副类的变量和方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> number;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">showNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;number = &quot;</span> + number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.number = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">super</span>.showNumber();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Sub类访问父类成员变量number并调用其父类Super的<code>showNumber（）</code> 方法。</p>
+</blockquote>
+<h2 id="super和this注意事项"><a href="#super和this注意事项" class="headerlink" title="super和this注意事项"></a>super和this注意事项</h2><blockquote>
+<ul>
+<li>在构造器中使用<code>super()</code>调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this调用本类中的其他构造方法时，也要放在首行。</li>
+<li>this、super不能用在static方法中。</li>
+<li><code> 被static修饰的成员属于类，不属于单个这个类的某个对象，被类中所有对象共享。而this代表对本类对象的引用，指向本类对象；而super代表对父类对象的引用，指向父类对象；所以， **this 和 super 是属于对象范畴的东西，而静态方法是属于类范畴的东西**。</code></li>
+</ul>
+</blockquote>
+<h1 id="并发多线程"><a href="#并发多线程" class="headerlink" title="并发多线程"></a>并发多线程</h1><h2 id="synchronized和Reentrantlock"><a href="#synchronized和Reentrantlock" class="headerlink" title="synchronized和Reentrantlock"></a>synchronized和Reentrantlock</h2><h3 id="ReebtrantLock比synchronized增加了一些高级功能"><a href="#ReebtrantLock比synchronized增加了一些高级功能" class="headerlink" title="ReebtrantLock比synchronized增加了一些高级功能"></a>ReebtrantLock比synchronized增加了一些高级功能</h3><blockquote>
+<p>synchronized是依赖于JVM实现的，在JDK1.6之后对锁进行了大量的优化，（偏向锁、轻量级锁、自旋锁、适应性自旋锁、锁消除、锁粗化等技术来减少锁的操作开销）这些优化都是在虚拟机层面实现的，并没有暴露给我们。</p>
+<p>ReentrantLock是JDK层面实现的（也就是API层面，需要lock()方法配合try/finally语句快来完成）。</p>
+<ul>
+<li><strong>等待可中断</strong> : <code>ReentrantLock</code>提供了一种能够中断等待锁的线程的机制，通过 <code>lock.lockInterruptibly()</code> 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。</li>
+<li><strong>可实现公平锁</strong> : <code>ReentrantLock</code>可以指定是公平锁还是非公平锁。而<code>synchronized</code>只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。<code>ReentrantLock</code>默认情况是非公平的，可以通过 <code>ReentrantLock</code>类的<code>ReentrantLock(boolean fair)</code>构造方法来制定是否是公平的。</li>
+<li><strong>可实现选择性通知（锁可以绑定多个条件）</strong>: <code>synchronized</code>关键字与<code>wait()</code>和<code>notify()</code>/<code>notifyAll()</code>方法相结合可以实现等待/通知机制。<code>ReentrantLock</code>类当然也可以实现，但是需要借助于<code>Condition</code>接口与<code>newCondition()</code>方法。</li>
+</ul>
+<blockquote>
+<p><code>Condition</code>是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个<code>Lock</code>对象中可以创建多个<code>Condition</code>实例（即对象监视器），<strong>线程对象可以注册在指定的<code>Condition</code>中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用<code>notify()/notifyAll()</code>方法进行通知时，被通知的线程是由 JVM 选择的，用<code>ReentrantLock</code>类结合<code>Condition</code>实例可以实现“选择性通知”</strong> ，这个功能非常重要，而且是 Condition 接口默认提供的。而<code>synchronized</code>关键字就相当于整个 Lock 对象中只有一个<code>Condition</code>实例，所有的线程都注册在它一个身上。如果执行<code>notifyAll()</code>方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而<code>Condition</code>实例的<code>signalAll()</code>方法 只会唤醒注册在该<code>Condition</code>实例中的所有等待线程。</p>
+</blockquote>
+</blockquote>
+<h2 id="并发编程的三个重要特性"><a href="#并发编程的三个重要特性" class="headerlink" title="并发编程的三个重要特性"></a>并发编程的三个重要特性</h2><ul>
+<li>原子性：一个的操作或者多次操作，要么全部都得到执行并且不会受到任何其他因素的干扰而中断，要么所有操作都执行，要么都不执行。synchronized保证了代码片段的原子性。</li>
+<li>可见性：当一变量对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。volatile保证了共享变量的可见性。</li>
+<li>有序性：代码在执行过程中的先后顺序，Java在编译器以及运行期间的优化，代码的执行顺序未必是编写代码的时候的顺序。volatile可以禁止指令进行重新排序优化。</li>
+</ul>
+<h2 id="synchronized关键字和volatile关键字的区别"><a href="#synchronized关键字和volatile关键字的区别" class="headerlink" title="synchronized关键字和volatile关键字的区别"></a>synchronized关键字和volatile关键字的区别</h2><blockquote>
+<p><code>synchronized</code> 关键字和 <code>volatile</code> 关键字是两个互补的存在，而不是对立的存在！</p>
+<ul>
+<li><strong><code>volatile</code> 关键字</strong>是线程同步的<strong>轻量级实现</strong>，所以 <strong><code>volatile </code>性能肯定比<code>synchronized</code>关键字要好</strong> 。但是 <strong><code>volatile</code> 关键字只能用于变量而 <code>synchronized</code> 关键字可以修饰方法以及代码块</strong> 。</li>
+<li><strong><code>volatile</code> 关键字能保证数据的可见性，但不能保证数据的原子性。<code>synchronized</code> 关键字两者都能保证。</strong></li>
+<li><strong><code>volatile</code>关键字主要用于解决变量在多个线程之间的可见性，而 <code>synchronized</code> 关键字解决的是多个线程之间访问资源的同步性。</strong></li>
+</ul>
+</blockquote>
+<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p><strong>封装：</strong>明确表示出允许外部使用的所有成员函数和数据项，内部细节对外部调用透明，外部调用无需修改或者关心内部实现；</p>
+<p><strong>继承：</strong>继承基类的方法，并做出自己的改变和扩展；</p>
+<p><strong>多态：</strong>基于对象所属类的不同，外部对同一方法的调用，实际执行的逻辑不同。 </p>
+<h2 id="JDK-JRE-JVM"><a href="#JDK-JRE-JVM" class="headerlink" title="JDK JRE JVM"></a>JDK JRE JVM</h2><p>JDK:Java Development Kit Java开发工具；</p>
+<p>JRE:Java Runtime Environment Java运行时环境；</p>
+<p>JVM:Java Virtual Machine Java虚拟机。</p>
+<p><img src="https://gitee.com/bixbycell/article-images/raw/master/article/20211025101014.png" alt="Java图"></p>
+<h2 id="重写和重载"><a href="#重写和重载" class="headerlink" title="重写和重载"></a>重写和重载</h2><h3 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h3><ul>
+<li>抽象类可以有普通的成员函数，而接口中只能存在public abstract。</li>
+<li>抽象类的成员变量可以是各种类型，而接口的成员变量只能是public static final类型的。</li>
+<li>抽象类只能继承一个，接口可以实现多个</li>
+</ul>
+<blockquote>
+<ul>
+<li>抽象类设计的目的是代码复用，即不同的类具有某些相同的行为时，可以将这些类的相同行为派生出一个抽象类，抽象类包含并实现子类的通用特性，将子类存在差异化的特性进行抽象，交由子类去实现。</li>
+<li>接口是对行为的抽象，核心是定义行为，即子类可以做什么</li>
+<li>使用场景：当你需要关注一个事物的本质时，用抽象类；当你需要关注一个事物的操作时，使用接口实现。</li>
+</ul>
+</blockquote>
+<h2 id="List与Set区别"><a href="#List与Set区别" class="headerlink" title="List与Set区别"></a>List与Set区别</h2><ul>
+<li>List:有序，按照对象进入的顺序保存对象，可重复，允许多个 元素对象，可以使用Iterator遍历取出所有元素，也可以使用for与get(index)的形式取出所有元素。</li>
+<li>Set: 无序，不可重复，最多只能存在一个null的元素，同样可以使用Iterator遍历所有的元素。</li>
+</ul>
+<h2 id="ArrayList与LinkedList区别"><a href="#ArrayList与LinkedList区别" class="headerlink" title="ArrayList与LinkedList区别"></a>ArrayList与LinkedList区别</h2><ul>
+<li>ArrayList:基于动态数组，连续内存存储，适合下标访问(随机访问)，扩容机制:数组长度固定，超出长度存数据时需要新建数组，然后将旧数组的数据拷贝到新数组中，如果不是尾部插入数据还会涉及到元素移动，使用尾部插入法并制定初始容量可以极大的提高性能、甚至超过LinkedList(需要大量的创建node对象)。</li>
+<li>LinkedList:基于链表，可以存储在分散的内存中，适合做数据插入及删除操作，不适合查询:需要遍历，LinkedList遍历需要使用iterator不能使用for循环，每次for循环中通过get(index)取出元素是都需要对List重新遍历，性能消耗极大。使用indexOf返回元素索引时当结果为空时会遍历整个列表。</li>
+</ul>
+<h2 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h2><ul>
+<li><p>HashMap是非线程安全的，可以存储null的key和value，但null作为键只能有一个，null作为值可以有多个。</p>
+</li>
+<li><p>HashTable使用synchronized修饰，是线程安全的，HashTable不允许有 null键和null值，否则会抛出NullPointerException</p>
+<blockquote>
+<p>效率：因为线程安全的问题，HashMap要比HashTable效率高一点。另外，HashTable基本被淘汰，不要在代码中使用它（如果你要保证线程安全的话就使用ConcurrentHashMap吧！）。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="如何实现一个IOC容器"><a href="#如何实现一个IOC容器" class="headerlink" title="如何实现一个IOC容器"></a>如何实现一个IOC容器</h2><p>1、配置文件配置包扫描路径</p>
+<p>2、递归包扫描获取.classwenjian</p>
+<p>3、反射、确定需要交给IOC管理的类</p>
+<p>4、对需要注入的类进行以来注入</p>
+<blockquote>
+<ul>
+<li>配置文件中指定需要扫描的包路径</li>
+<li>定义一些注解，分别表示访问控制层、业务服务层、数据持久层、依赖注入注解、获取配置文件注释</li>
+<li>从配置文件中获取需要扫描的包路径，获取到当前路径下的文件信息及文件夹信息，我们将当前路径下所有以.class结尾的文件添加到一个Set集合中进行存储</li>
+<li>遍历这个Set集合，获取在类上有指定注解的类，并将其交给IOC容器，定义一个安全的MAP用来存储这些对象</li>
+<li>遍历这个IOC容器，获取每一个类的实例，判断里面是有有依赖其他的类的实例，然后进行递归注入</li>
+</ul>
+</blockquote>
+<h2 id="Java类加载器"><a href="#Java类加载器" class="headerlink" title="Java类加载器"></a>Java类加载器</h2><p>JDK自带有三个类加载器：bootstrap ClassLoader、ExtClassLoader、AppClassLoader。</p>
+<p>BootStrapClassLoader是ExtClassLoader的类加载，默认负责加载%JAVA_HOME%/lib下的jar包和class文件。</p>
+<p>ExtClassLoader是AppClassLoader的父类加载器，负责加载%JAVA_HOME%/lib/ext文件夹下的jar包和class类。</p>
+<p>AppClassLoader是自定义类加载器的父类，负责加载classpath下的类文件。继承classLoader实现自定义类加载器。 </p>
+<h2 id="并发的三大特性"><a href="#并发的三大特性" class="headerlink" title="并发的三大特性"></a>并发的三大特性</h2><ul>
+<li>原子性：一个操作要么全部执行，要么都不执行（如银行转账操作）Synchronized</li>
+<li>可见性：一个线程改变变量的值时，其他现场立即可见 Volatitle</li>
+<li>有序性：代码在执行的过程中的先后顺序，Java在编译器以及运行期间的优化，代码的执行顺序未必是编写代码时候的顺序 Volatitle</li>
+</ul>
+<h2 id="为什么使用线程池，解释线程池的参数"><a href="#为什么使用线程池，解释线程池的参数" class="headerlink" title="为什么使用线程池，解释线程池的参数"></a>为什么使用线程池，解释线程池的参数</h2><ul>
+<li><p>降低资源消耗；提高线程利用率，降低创建和销毁线程的消耗。</p>
+</li>
+<li><p>提高响应速度；任务来了，直接有线程可用可执行，而不是先创建线程再执行。</p>
+</li>
+<li><p>提高线程的可管理性；线程时稀缺资源，使用线程池可用统一分配调优监控。</p>
+<blockquote>
+<ul>
+<li>corePoolSize代表核心线程数，也就是正常情况下创建工作的线程数，这些线程创建之后不会被消除，而是一种常驻线程</li>
+<li>maxinumpoolSize代表最大的线程数，它与核心线程数相对应，表示最大允许被创建的线程数，比如当前任务较多，将核心线程数都用完了，还无法满足需求时，此时就会创建新的线程，但是线程池内线程总数不会超过最大线程数</li>
+<li>keepAliveTime、unit表示超出核心线程数之外的线程的空闲存活时间，也就是核心线程不会消除，但是超出核心线程数的部分线程如果空闲一定时间则会被消除，我们可以通过setKeepAliveTime来设置空闲时间</li>
+<li>workQueue用来存放待执行的任务，假设我们现在核心线程都已经被使用，还有任务进来则全部放入队列，直到整个队列被放满但任务还再持续进入则会开始创建新的线程</li>
+<li>ThreadFactory实际上是一个线程工厂，用来生产线程执行任务。我们可以选择使用默认的创建工厂，产生的线程都在一个组内，拥有相同的优先级，且都不是守护线程。当然我们也可以选择自定义线程工厂。</li>
+<li>Handler任务拒绝策略，有两种情况，第一种是当我们调用shutdown等方法关闭线程池后，这时候即使线程池内部还有没有执行完的任务在执行，但是线程池已经关闭，我们再继续向线程池提交任务就会遭到拒绝。另一种情况就是当达到最大线程数，线程池已经没有能力继续处理提交的新任务时，这时也是拒绝。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="线程池中阻塞队列的作用？为什么是先添加队列而不是先创建最大线程？"><a href="#线程池中阻塞队列的作用？为什么是先添加队列而不是先创建最大线程？" class="headerlink" title="线程池中阻塞队列的作用？为什么是先添加队列而不是先创建最大线程？"></a>线程池中阻塞队列的作用？为什么是先添加队列而不是先创建最大线程？</h2><ul>
+<li>一般的队列只能保证作为一个有限长度的缓存区，如果超出缓冲长度，就无法保留当前的任务，阻塞队列通过阻塞可以保留住当前想要继续入队的任务。</li>
+<li>阻塞队列可以保证任务队列中没有任务时阻塞获取任务的线程，使其线程进入wait状态，释放cpu资源</li>
+<li>阻塞队列自带阻塞和唤醒的功能，不需要额外处理，无任务执行时，线程池利用阻塞队列的take方法挂起，从而维持核心线程的存活，不至于一直占用cpu资源</li>
+<li>在创建新线程的时候，是需要获取全局锁的，这个时候其他的就得阻塞，影响了整体效率</li>
+</ul>
+<h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，线程是线程，任务是任务，摆脱之前通过Thread创建线程时的一个线程必须对应一个任务的限制。在线程池中，同一个线程可以从阻塞队列中不断获取新任务来执行，其核心原理在于线程池对Thread进行了封装，并不是每次执行任务都会调用Thread.start()来创建新线程，而是让每一个线程去执行一个“循环任务”，在这个“循环任务”中不停检查是否有任务需要执行，如果有则直接执行，也就是有则直接调用任务中的run()方法，将run方法当成一个普通的方法执行，通过这种方式只使用固定的线程就将所有任务的run方法串联起来。</p>
+<h2 id="Spring支持的bean的作用域"><a href="#Spring支持的bean的作用域" class="headerlink" title="Spring支持的bean的作用域"></a>Spring支持的bean的作用域</h2><ul>
+<li>Singleton:单例</li>
+<li>Prototype:每次注入都产生一个新对象</li>
+<li>Request:每一个HTTP请求都产生一个实例</li>
+<li>Session:每一个HTTP请求都会产生一个新的bean</li>
+<li>Global-session:全局作用域</li>
+</ul>
+<h2 id="Spring中都用到了那些设计模式"><a href="#Spring中都用到了那些设计模式" class="headerlink" title="Spring中都用到了那些设计模式"></a>Spring中都用到了那些设计模式</h2><ul>
+<li>简单工厂：由一个工厂类根据传入的参数，动态决定应该创建那个产品类。Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获取bean对象，但是是否传入参数后创建还是传入参数前创建这个要根据具体情况来定</li>
+<li>工厂方法：实现一个FactoryBean接口的bean是一类叫做factory的bean，其特点是spring会根据使用getBean()调用获得该bean时会自动调用该bean的getObject()方法，所以返回的都不是factory这个bean，而是这个bean.getObject()方法的返回值</li>
+<li>单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。Spring对单例的实现：Spring中的单例模式完成了后半句话，即提供了全局的访问BeanFactory但没有从构造器级别去控制单例，这时因为Spring管理的是任意的Java对象</li>
+<li>适配器模式：Spring定义了一个适配接口，使得每一个Controller有一种对应的适配器实现类，让适配器代替Controller执行相应的方法，这样在扩展controller时，只需要增加一个适配器就完成了SpringMVC的扩展，HandlerAdapter</li>
+<li>装饰器模式：动态的给一个对象增加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更加灵活。带wrapper</li>
+<li>动态代理：切面在应用运行时刻被注入，一般情况下在注入切面时，AOP容器会为目标对象创建动态的一个代理对象</li>
+<li>观察者模式：Spring的事件驱动模型使用的是观察者模式，Spring对Observer模式常用的地方是listener的实现。</li>
+<li>策略模式：Spring框架的资源访问Resource接口</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>工厂设计模式</strong> : Spring 使用工厂模式通过 <code>BeanFactory</code>、<code>ApplicationContext</code> 创建 bean 对象。</li>
+<li><strong>代理设计模式</strong> : Spring AOP 功能的实现。</li>
+<li><strong>单例设计模式</strong> : Spring 中的 Bean 默认都是单例的。</li>
+<li><strong>模板方法模式</strong> : Spring 中 <code>jdbcTemplate</code>、<code>hibernateTemplate</code> 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。</li>
+<li><strong>包装器设计模式</strong> : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。</li>
+<li><strong>观察者模式:</strong> Spring 事件驱动模型就是观察者模式很经典的一个应用。</li>
+<li><strong>适配器模式</strong> : Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配<code>Controller</code>。</li>
+</ul>
+</blockquote>
+<h2 id="Spring-Boot、Spring-MVC和Spring有什么区别"><a href="#Spring-Boot、Spring-MVC和Spring有什么区别" class="headerlink" title="Spring Boot、Spring MVC和Spring有什么区别"></a>Spring Boot、Spring MVC和Spring有什么区别</h2><blockquote>
+<p>spring是一个IOC容器，用来管理Bean，使用依赖注入实现控制反转，可以很方便的整合各种框架，提供AOP机制弥补OOP的代码重复问题、更方便将不同类不同方法中的共同处理抽取成切面、自动注入给方法执行，比如日志、异常等。</p>
+<p>springmvc是spring对Web框架的一个解决方案，提供一个总的前控制器Servlet，用来接收请求，然后定义了一套路由策略（URL到handle的映射）及适配执行handle，将handle结果使用视图展现给前端。</p>
+<p>Spring Boot是一个Spring提供的快速开发工具包，让程序员能更方便、快速的开发Spring+springMVC应用，简化了配置（约定了默认配置），整合了一系列的解决方案（starter机制）、redias、mongodb、es、可以开箱即用</p>
+</blockquote>
+<h2 id="SpringMVC工作流程"><a href="#SpringMVC工作流程" class="headerlink" title="SpringMVC工作流程"></a>SpringMVC工作流程</h2><ol>
+<li>用户发送请求到前端控制器DispathcherServlet.</li>
+<li>DispathcherServlet收到请求调用HandlerMapping处理映射器。</li>
+<li>处理器映射器找到具体的处理器（根据XML配置、注解进行查找），生成处理器及处理器拦截器（如果有则生成）一并返回给DispathcherServlet。</li>
+<li>DispathcherServlet调用HandlerAdapter处理器适配器。</li>
+<li>HandlerAdapter经过适配调用具体的处理器（Controller，也叫后端控制器）。</li>
+<li>Controller执行完成返回ModelAndView。</li>
+<li>HandlerAdapter将Controller执行结果ModelAndView返回给DispathcherServlet。</li>
+<li>DispathcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
+<li>ViewReslover解析后返回具体View。</li>
+<li>DispathcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
+<li>DispathcherServlet响应用户。</li>
+</ol>
+<blockquote>
+<ol>
+<li>客户端（浏览器）发送请求，直接请求到 <code>DispatcherServlet</code>。</li>
+<li><code>DispatcherServlet</code> 根据请求信息调用 <code>HandlerMapping</code>，解析请求对应的 <code>Handler</code>。</li>
+<li>解析到对应的 <code>Handler</code>（也就是我们平常说的 <code>Controller</code> 控制器）后，开始由 <code>HandlerAdapter</code> 适配器处理。</li>
+<li><code>HandlerAdapter</code> 会根据 <code>Handler</code>来调用真正的处理器开处理请求，并处理相应的业务逻辑。</li>
+<li>处理器处理完业务后，会返回一个 <code>ModelAndView</code> 对象，<code>Model</code> 是返回的数据对象，<code>View</code> 是个逻辑上的 <code>View</code>。</li>
+<li><code>ViewResolver</code> 会根据逻辑 <code>View</code> 查找实际的 <code>View</code>。</li>
+<li><code>DispaterServlet</code> 把返回的 <code>Model</code> 传给 <code>View</code>（视图渲染）。</li>
+<li>把 <code>View</code> 返回给请求者（浏览器）</li>
+</ol>
+</blockquote>
+<h2 id="Spring-Boot自动装配"><a href="#Spring-Boot自动装配" class="headerlink" title="Spring Boot自动装配"></a>Spring Boot自动装配</h2><blockquote>
+<p>SpringBoot 定义了一套接口规范，这套规范规定：SpringBoot 在启动时会扫描外部引用 jar 包中的<code>META-INF/spring.factories</code>文件，将文件中配置的类型信息加载到 Spring 容器（此处涉及到 JVM 类加载机制与 Spring 的容器知识），并执行类中定义的各种操作。对于外部 jar 来说，只需要按照 SpringBoot 定义的标准，就能将自己的功能装置进 SpringBoot。</p>
+<p><strong>通过注解或者一些简单的配置就能在 Spring Boot 的帮助下实现某块功能。</strong></p>
+</blockquote>
+<blockquote>
+<p>Spring Boot 通过<code>@EnableAutoConfiguration</code>开启自动装配，通过 SpringFactoriesLoader 最终加载<code>META-INF/spring.factories</code>中的自动配置类实现自动装配，自动配置类其实就是通过<code>@Conditional</code>按需加载的配置类，想要其生效必须引入<code>spring-boot-starter-xxx</code>包实现起步依赖</p>
+</blockquote>
+<h2 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h2><h2 id="spring事务机制"><a href="#spring事务机制" class="headerlink" title="spring事务机制"></a>spring事务机制</h2><ol>
+<li>Spring事务底层是基于数据库事务和AOP机制的</li>
+<li>首先对于使用了@Transactional注解的Bean，spring会创建一个代理对象作为bean</li>
+<li>当调用代理对象的方法时，会判断方法上是否加了@Transactional注解</li>
+<li>如果加了，那么利用事务管理器创建一个数据库连接</li>
+<li>并且修改数据库连接的autocommit属性为false，禁止此连接自动提交</li>
+<li>然后执行当前方法，方法会执行sql</li>
+<li>执行完当前方法后，如果没有出现异常就直接提交事务</li>
+<li>如果出现异常，并且这个异常是需要回滚的就会回滚事务，否则仍然提交事务</li>
+<li>Spring的隔离级别就是数据库的隔离级别</li>
+</ol>
+<h2 id="redis应用场景"><a href="#redis应用场景" class="headerlink" title="redis应用场景"></a>redis应用场景</h2><ol>
+<li>5大value类型：String、Hash、List、Set、SortedSet</li>
+<li>基本上就是缓存～！</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">bixby</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://bixby-cell.github.io/2021/08/23/interview/">https://bixby-cell.github.io/2021/08/23/interview/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bixby-cell.github.io" target="_blank">bixby博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/10/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"><img class="prev-cover" src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java垃圾回收</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/29/hello-world/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/34.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">bixby</div><div class="author-info__description">学有所成</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://bixby-cell.github.io" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1439381768@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#final-static-this-super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.</span> <span class="toc-text">final, static, this, super关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#final%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.1.</span> <span class="toc-text">final关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.2.</span> <span class="toc-text">static关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.3.</span> <span class="toc-text">this关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.4.</span> <span class="toc-text">super关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super%E5%92%8Cthis%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.5.</span> <span class="toc-text">super和this注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">并发多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized%E5%92%8CReentrantlock"><span class="toc-number">2.1.</span> <span class="toc-text">synchronized和Reentrantlock</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ReebtrantLock%E6%AF%94synchronized%E5%A2%9E%E5%8A%A0%E4%BA%86%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.1.</span> <span class="toc-text">ReebtrantLock比synchronized增加了一些高级功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">并发编程的三个重要特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8Cvolatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.</span> <span class="toc-text">synchronized关键字和volatile关键字的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK-JRE-JVM"><span class="toc-number">3.2.</span> <span class="toc-text">JDK JRE JVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD"><span class="toc-number">3.3.</span> <span class="toc-text">重写和重载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">3.3.1.</span> <span class="toc-text">接口和抽象类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List%E4%B8%8ESet%E5%8C%BA%E5%88%AB"><span class="toc-number">3.4.</span> <span class="toc-text">List与Set区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ArrayList%E4%B8%8ELinkedList%E5%8C%BA%E5%88%AB"><span class="toc-number">3.5.</span> <span class="toc-text">ArrayList与LinkedList区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.6.</span> <span class="toc-text">HashMap和Hashtable的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAIOC%E5%AE%B9%E5%99%A8"><span class="toc-number">3.7.</span> <span class="toc-text">如何实现一个IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">3.8.</span> <span class="toc-text">Java类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">3.9.</span> <span class="toc-text">并发的三大特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E8%A7%A3%E9%87%8A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">3.10.</span> <span class="toc-text">为什么使用线程池，解释线程池的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%88%E6%B7%BB%E5%8A%A0%E9%98%9F%E5%88%97%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%88%E5%88%9B%E5%BB%BA%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">3.11.</span> <span class="toc-text">线程池中阻塞队列的作用？为什么是先添加队列而不是先创建最大线程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86"><span class="toc-number">3.12.</span> <span class="toc-text">线程池中线程复用原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E6%94%AF%E6%8C%81%E7%9A%84bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">3.13.</span> <span class="toc-text">Spring支持的bean的作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E4%B8%AD%E9%83%BD%E7%94%A8%E5%88%B0%E4%BA%86%E9%82%A3%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.14.</span> <span class="toc-text">Spring中都用到了那些设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot%E3%80%81Spring-MVC%E5%92%8CSpring%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">3.15.</span> <span class="toc-text">Spring Boot、Spring MVC和Spring有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">3.16.</span> <span class="toc-text">SpringMVC工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">3.17.</span> <span class="toc-text">Spring Boot自动装配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis"><span class="toc-number">3.18.</span> <span class="toc-text">Mybatis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring%E4%BA%8B%E5%8A%A1%E6%9C%BA%E5%88%B6"><span class="toc-number">3.19.</span> <span class="toc-text">spring事务机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.20.</span> <span class="toc-text">redis应用场景</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" title="自动化测试"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自动化测试"/></a><div class="content"><a class="title" href="/2021/11/02/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" title="自动化测试">自动化测试</a><time datetime="2021-11-02T08:02:52.628Z" title="发表于 2021-11-02 16:02:52">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/13/System/" title="计算机基础"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机基础"/></a><div class="content"><a class="title" href="/2021/09/13/System/" title="计算机基础">计算机基础</a><time datetime="2021-09-13T13:48:18.850Z" title="发表于 2021-09-13 21:48:18">2021-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/10/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="Java垃圾回收"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java垃圾回收"/></a><div class="content"><a class="title" href="/2021/09/10/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="Java垃圾回收">Java垃圾回收</a><time datetime="2021-09-10T03:20:44.515Z" title="发表于 2021-09-10 11:20:44">2021-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/23/interview/" title="final, static, this, super关键字"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="final, static, this, super关键字"/></a><div class="content"><a class="title" href="/2021/08/23/interview/" title="final, static, this, super关键字">final, static, this, super关键字</a><time datetime="2021-08-23T02:54:09.948Z" title="发表于 2021-08-23 10:54:09">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/29/hello-world/" title="Hello World"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/07/29/hello-world/" title="Hello World">Hello World</a><time datetime="2021-07-29T15:54:52.092Z" title="发表于 2021-07-29 23:54:52">2021-07-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By bixby</div><div class="footer_custom_text">Hi, welcome to my <a href="https://bixby-cell.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
