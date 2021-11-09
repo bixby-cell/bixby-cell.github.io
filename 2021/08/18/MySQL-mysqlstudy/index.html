@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MySQL | bixby博客</title><meta name="author" content="bixby"><meta name="copyright" content="bixby"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL">
+<meta property="og:url" content="https://bixby-cell.github.io/2021/08/18/MySQL-mysqlstudy/index.html">
+<meta property="og:site_name" content="bixby博客">
+<meta property="og:description" content="MySQL123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg">
+<meta property="article:published_time" content="2021-08-18T12:27:48.000Z">
+<meta property="article:modified_time" content="2021-11-09T13:29:10.649Z">
+<meta property="article:author" content="bixby">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bixby-cell.github.io/2021/08/18/MySQL-mysqlstudy/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-09 21:29:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/34.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">bixby博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-18T12:27:48.000Z" title="发表于 2021-08-18 20:27:48">2021-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-09T13:29:10.649Z" title="更新于 2021-11-09 21:29:10">2021-11-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">USE test;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line">id <span class="type">INT</span> UNSIGNED <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">name <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">birthday <span class="type">DATE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">tel <span class="type">CHAR</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">remark <span class="type">VARCHAR</span>(<span class="number">200</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">VALUES</span>(<span class="number">1</span>,&quot;任泓宇&quot;,&quot;男&quot;,&quot;1997-09-22&quot;,&quot;19883047589&quot;,<span class="keyword">NULL</span>);</span><br><span class="line"><span class="keyword">SHOW</span> tables;</span><br><span class="line"><span class="keyword">DESC</span> student;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> temp(</span><br><span class="line">id <span class="type">INT</span> UNSIGNED <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">num <span class="type">FLOAT</span>(<span class="number">20</span>,<span class="number">10</span>),</span><br><span class="line">n <span class="type">DECIMAL</span>(<span class="number">20</span>,<span class="number">10</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*DECIMAL保存浮点进度防止数据精度丢失*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*添加字段*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">ADD</span> address <span class="type">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">ADD</span> home_tel <span class="type">CHAR</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*修改字段类型和约束*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line">MODIFY home_tel <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="keyword">DESC</span> student;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*修改字段名称*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line">CHANGE address home_address <span class="type">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*删除字段*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">DROP</span> home_address,</span><br><span class="line"><span class="keyword">DROP</span> home_tel;</span><br><span class="line"><span class="keyword">DESC</span> student;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*修改表名*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student RENAME teacher;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*AUTO_INCREMENT 自增； UNIQUE 字段唯一*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_teacher(</span><br><span class="line">id <span class="type">INT</span> UNSIGNED <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">name <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">tel <span class="type">CHAR</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">married <span class="type">BOOLEAN</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">FALSE</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*如何创建、添加与删除索引*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_message(</span><br><span class="line">id <span class="type">INT</span> UNSIGNED <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">content <span class="type">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">type ENUM(&quot;通知&quot;,&quot;公告&quot;,&quot;个人通知&quot;) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">create_time <span class="type">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX idx_type (type)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">DROP</span> INDEX idx_type <span class="keyword">ON</span> t_message;</span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_type <span class="keyword">ON</span> t_message(type);</span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> t_message;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t_message <span class="keyword">ADD</span> INDEX idx_type(type);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*使用列别名*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t_emp;</span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal <span class="keyword">FROM</span> t_emp;</span><br><span class="line"><span class="keyword">SELECT</span> ename,sal<span class="operator">*</span><span class="number">12</span> <span class="keyword">AS</span> &quot;annual_salary&quot; <span class="keyword">FROM</span> t_emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*数据分页*/</span></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename <span class="keyword">FROM</span> t_emp LIMIT <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"><span class="comment">/*结果集排序*/</span></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>;</span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,hiredate,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> ename <span class="keyword">ASC</span>;</span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,hiredate,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>,hiredate <span class="keyword">ASC</span>;</span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span> LIMIT <span class="number">0</span>,<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*去除重复记录*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> job <span class="keyword">FROM</span> t_emp;</span><br><span class="line"><span class="comment">/*DISTINCT关键字只能在SELECT子句中使用一次;使用DISTINCT的SELECT子句中只能查询一列数据，如果查询多列，去除重复记录就会失效。*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*条件查询*/</span></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> deptno<span class="operator">=</span><span class="number">10</span> <span class="keyword">AND</span> sal<span class="operator">&gt;=</span><span class="number">2000</span>;</span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,deptno <span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> (deptno<span class="operator">=</span><span class="number">10</span> <span class="keyword">OR</span> deptno<span class="operator">=</span><span class="number">20</span>) <span class="keyword">AND</span> sal<span class="operator">&gt;=</span><span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*10部门年收入超过5000的工龄大于20年的员工*/</span></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,hiredate,deptno </span><br><span class="line"><span class="keyword">FROM</span> t_emp </span><br><span class="line"><span class="keyword">WHERE</span> deptno<span class="operator">=</span><span class="number">10</span> <span class="keyword">AND</span> (sal<span class="operator">+</span>IFNULL(comm,<span class="number">0</span>))<span class="operator">*</span><span class="number">12</span><span class="operator">&gt;=</span><span class="number">5000</span></span><br><span class="line"><span class="keyword">AND</span> DATEDIFF(NOW(),hiredate)<span class="operator">/</span><span class="number">365</span><span class="operator">&gt;=</span><span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal,hiredate,deptno</span><br><span class="line"><span class="keyword">FROM</span> t_emp </span><br><span class="line"><span class="keyword">WHERE</span> deptno <span class="keyword">IN</span>(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>) <span class="keyword">AND</span> job<span class="operator">!=</span>&quot;SALESMAN&quot;</span><br><span class="line"><span class="keyword">AND</span> hiredate<span class="operator">&lt;</span>&quot;1985-01-01&quot;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*求公司员工的平均月收入是多少*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(sal<span class="operator">+</span>IFNULL(comm,<span class="number">0</span>)) <span class="keyword">FROM</span> t_emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MAX</span>(sal<span class="operator">+</span>IFNULL(comm,<span class="number">0</span>)) <span class="keyword">FROM</span> t_emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(sal) <span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> deptno <span class="keyword">IN</span>(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> t_emp;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(comm) <span class="keyword">FROM</span> t_emp;</span><br><span class="line"><span class="comment">/*查询10和20部门中，底薪超过2000元并且工龄超过15年的员工人数*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> t_emp </span><br><span class="line"><span class="keyword">WHERE</span> deptno <span class="keyword">IN</span>(<span class="number">10</span>,<span class="number">20</span>) <span class="keyword">AND</span> sal<span class="operator">&gt;=</span><span class="number">2000</span></span><br><span class="line"><span class="keyword">AND</span> DATEDIFF(NOW(),hiredate)<span class="operator">/</span><span class="number">365</span><span class="operator">&gt;=</span><span class="number">15</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> deptno,ROUND(<span class="built_in">AVG</span>(sal)) <span class="keyword">FROM</span> t_emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno</span><br><span class="line"><span class="comment">/*查询每个部门里，每种职位的人员数量和平均底薪*/</span></span><br><span class="line"><span class="keyword">SELECT</span> deptno,job,<span class="built_in">COUNT</span>(<span class="operator">*</span>),<span class="built_in">AVG</span>(sal)</span><br><span class="line"><span class="keyword">FROM</span> t_emp </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno,job </span><br><span class="line"></span><br><span class="line"><span class="comment">/*对分组结果集再次做汇总计算*/</span></span><br><span class="line"><span class="keyword">SELECT</span> deptno,<span class="built_in">COUNT</span>(<span class="operator">*</span>),<span class="built_in">AVG</span>(sal),<span class="built_in">MAX</span>(sal),<span class="built_in">MIN</span>(sal)</span><br><span class="line"><span class="keyword">FROM</span> t_emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno <span class="keyword">WITH</span> <span class="keyword">ROLLUP</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*查询每个部门中，1982年以后入职的员工超过2个人的部门编号*/</span></span><br><span class="line"><span class="keyword">SELECT</span> deptno </span><br><span class="line"><span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> hiredate<span class="operator">&gt;=</span>&quot;1982-01-01&quot;</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>)<span class="operator">&gt;=</span><span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*从多张表中提取数据*/</span></span><br><span class="line"><span class="keyword">SELECT</span> e.empno,e.ename,d.dname <span class="keyword">FROM</span> t_emp e <span class="keyword">JOIN</span> t_dept d <span class="keyword">ON</span> e.deptno<span class="operator">=</span>d.deptno;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*查询每个员工的工号、姓名、部门名称、底薪、职位、工资等级*/</span></span><br><span class="line"><span class="keyword">SELECT</span> e.empno,e.ename,d.deptno,e.sal,e.job,s.grade </span><br><span class="line"><span class="keyword">FROM</span> t_emp e <span class="keyword">JOIN</span> t_dept d <span class="keyword">ON</span> e.deptno<span class="operator">=</span>d.deptno </span><br><span class="line"><span class="keyword">JOIN</span> t_salgrade s <span class="keyword">on</span> e.sal <span class="keyword">BETWEEN</span> s.losal <span class="keyword">AND</span> s.hisal;</span><br><span class="line"><span class="comment">/*内连接的数据表不一定必须有同名字段，只要字段之间符合逻辑关</span></span><br><span class="line"><span class="comment">系就可以*/</span></span><br><span class="line"></span><br><span class="line">#查询与SCOTT相同部门的员工都有谁</span><br><span class="line"><span class="keyword">SELECT</span> ename <span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> deptno<span class="operator">=</span>(<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> t_emp <span class="keyword">WHERE</span> ename<span class="operator">=</span>&quot;SCOTT&quot;) <span class="keyword">AND</span> ename<span class="operator">!=</span>&quot;SCOTT&quot;;</span><br><span class="line"><span class="keyword">SELECT</span> e2.ename <span class="keyword">FROM</span> t_emp e1 <span class="keyword">JOIN</span> t_emp e2 <span class="keyword">ON</span> e1.deptno<span class="operator">=</span>e2.deptno <span class="keyword">WHERE</span> e1.ename<span class="operator">=</span>&quot;SCOTT&quot; <span class="keyword">AND</span> e2.ename<span class="operator">!=</span>&quot;SCOTT&quot;;</span><br><span class="line"></span><br><span class="line">#查询月薪超过公司平均月薪的员工信息</span><br><span class="line"><span class="keyword">SELECT</span> e1.ename <span class="keyword">FROM</span> t_emp e1 <span class="keyword">JOIN</span></span><br><span class="line">(<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(sal) avg <span class="keyword">FROM</span> t_emp) e2</span><br><span class="line"> <span class="keyword">ON</span> e1.sal <span class="operator">&gt;</span> e2.avg;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_emp </span><br><span class="line"> (empno,ename,job,mgr,hiredate,sal,comm,deptno)</span><br><span class="line"> <span class="keyword">VALUES</span>(<span class="number">8001</span>,&quot;刘娜&quot;,&quot;SALESMAN&quot;,<span class="number">8000</span>,&quot;1998-01-21&quot;,<span class="number">2000</span>,<span class="keyword">NULL</span>,(<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> t_dept <span class="keyword">WHERE</span> dname<span class="operator">=</span>&quot;技术部&quot;));</span><br><span class="line"></span><br><span class="line"> #把每个员工的编号和上司的编号<span class="operator">+</span><span class="number">1</span>，用<span class="keyword">ORDER</span> <span class="keyword">BY</span>子句完成</span><br><span class="line"> UPDATE t_emp <span class="keyword">SET</span> empno<span class="operator">=</span>empno<span class="operator">+</span><span class="number">1</span>,mgr<span class="operator">=</span>mgr<span class="operator">+</span><span class="number">1</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> empno <span class="keyword">DESC</span>;</span><br><span class="line"> #把月收入前三名的员工底薪减<span class="number">100</span>元，用LIMIT子句完成</span><br><span class="line"> UPDATE t_emp <span class="keyword">SET</span> sal<span class="operator">=</span>sal<span class="number">-100</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal<span class="operator">+</span>IFNULL(comm,<span class="number">0</span>) <span class="keyword">DESC</span> LIMIT <span class="number">3</span>;</span><br><span class="line"> #把<span class="number">10</span>部门中，工龄超过<span class="number">20</span>年的员工，底薪增加<span class="number">200</span>元</span><br><span class="line"> UPDATE t_emp <span class="keyword">SET</span> sal<span class="operator">=</span>sal<span class="number">-200</span> <span class="keyword">WHERE</span> DATEDIFF(NOW(),hiredate)<span class="operator">/</span><span class="number">365</span><span class="operator">&gt;</span><span class="number">20</span> <span class="keyword">AND</span> deptno<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line"> #把底薪低于公司平均底薪的员工，底薪增加<span class="number">150</span>元</span><br><span class="line"> UPDATE t_emp e <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(sal) avg <span class="keyword">FROM</span> t_emp) d <span class="keyword">set</span> e.sal<span class="operator">=</span>e.sal<span class="operator">+</span><span class="number">150</span> <span class="keyword">WHERE</span> e.sal<span class="operator">&lt;=</span>d.avg;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="MySQL函数"><a href="#MySQL函数" class="headerlink" title="MySQL函数"></a>MySQL函数</h4><ul>
+<li>数字函数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ABS</td>
+<td>绝对值</td>
+<td>ABS(-100)</td>
+</tr>
+<tr>
+<td>ROUND</td>
+<td>四舍五入</td>
+<td>ROUND(4.62)</td>
+</tr>
+<tr>
+<td>FLOOR</td>
+<td>强制舍位到最近的整数</td>
+<td>FLOOR(9.9)</td>
+</tr>
+<tr>
+<td>CEIL</td>
+<td>强制进位到最近的整数</td>
+<td>CEIL(3.2)</td>
+</tr>
+<tr>
+<td>POWER</td>
+<td>幂函数</td>
+<td>POWER(2,3)</td>
+</tr>
+<tr>
+<td>LOG</td>
+<td>对数函数</td>
+<td>LOG(7,3)</td>
+</tr>
+<tr>
+<td>LN</td>
+<td>对数函数</td>
+<td>LN(10)</td>
+</tr>
+<tr>
+<td>SQRT 开平方</td>
+<td>SQRT(9)</td>
+<td></td>
+</tr>
+<tr>
+<td>PI</td>
+<td>圆周率</td>
+<td>PI()</td>
+</tr>
+<tr>
+<td>SIN</td>
+<td>三角函数</td>
+<td>SIN(1)</td>
+</tr>
+<tr>
+<td>COS</td>
+<td>三角函数</td>
+<td>COS(1)</td>
+</tr>
+<tr>
+<td>TAN</td>
+<td>三角函数</td>
+<td>TAN(1)</td>
+</tr>
+<tr>
+<td>COT</td>
+<td>三角函数</td>
+<td>COT(1)</td>
+</tr>
+<tr>
+<td>RADIANS</td>
+<td>角度转换弧度</td>
+<td>RADIANS(30)</td>
+</tr>
+<tr>
+<td>DEGREES</td>
+<td>弧度转换角度</td>
+<td>DEGREES(1)</td>
+</tr>
+</tbody></table>
+<h4 id="获取系统时间函数"><a href="#获取系统时间函数" class="headerlink" title="获取系统时间函数"></a>获取系统时间函数</h4><ul>
+<li>NOW()函数能获得系统日期和时间，格式yyyy-MM-dd hh:mm:ss</li>
+<li>CURDATE()函数能获得当前系统日期，格式yyyy-MM-dd</li>
+<li>CURTIME()函数能获得当前系统时间，格式hh:mm:ss<h5 id="日期格式化函数"><a href="#日期格式化函数" class="headerlink" title="日期格式化函数"></a>日期格式化函数</h5></li>
+<li>DATE_FORMAT()函数用于格式化日期，返回用户想要的日期格式<blockquote>
+<p>SELECT ename,DATE_FORMAT(hiredate,”%Y”) FROM t_emp;</p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>作用</th>
+<th>占位符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%Y</td>
+<td>年份</td>
+<td>%m</td>
+<td>月份</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>日期</td>
+<td>%w</td>
+<td>星期(数字)</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>星期(名称)</td>
+<td>%j</td>
+<td>本年第几天</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>本年第几周</td>
+<td>%H</td>
+<td>小时(24)</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>小时(12)</td>
+<td>%i</td>
+<td>分钟</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>秒</td>
+<td>%r</td>
+<td>时间(12)</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>时间(24)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>#利用日期函数，查询明年你的生日是星期几？<br> SELECT DATE_FORMAT(“2021-09-12”,”%W”);<br> #利用日期函数，查询1981年上半年入职的员工有多少人？<br> SELECT COUNT(*) FROM t_emp WHERE DATE_FORMAT(hiredate,”%Y”)=1981 AND DATE_FORMAT(hiredate,”%m”)&lt;=6;</p>
+</blockquote>
+<ul>
+<li>日期偏移计算<blockquote>
+<p>DATE_ADD()函数可以实现日期的偏移计算，而且时间单位很灵活<br>DATE_ADD( 日期 , INTERVAL 偏移量 时间单位 )<br>SELECT DATE_ADD(NOW(),INTERVAL 15 DAY);<br>SELECT DATE_ADD(NOW(),INTERVAL -300 MINUTE);</p>
+</blockquote>
+</li>
+<li>计算日期之间相隔的天数<blockquote>
+<p>DATEDIFF()函数用来计算两个日期之间相差的天数<br>DATEDIFF ( 日期 , 日期 );</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h5><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOWER</td>
+<td>转换小写字符</td>
+<td>LOWER(ename)</td>
+</tr>
+<tr>
+<td>UPPER</td>
+<td>转换大写字符</td>
+<td>UPPER(ename)</td>
+</tr>
+<tr>
+<td>LENGTH</td>
+<td>字符数量</td>
+<td>LENGTH(ename)</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>连接字符串</td>
+<td>CONCAT(sal, “$”)</td>
+</tr>
+<tr>
+<td>INSTR</td>
+<td>字符出现的位置</td>
+<td>INSTR(ename, “A”)</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>插入/替换字符</td>
+<td>INSERT(“你好”,1,0,”先生”)</td>
+</tr>
+<tr>
+<td>REPLACE</td>
+<td>替换字符</td>
+<td>REPLACE(“你好先生”,”先生”,”女士”)</td>
+</tr>
+<tr>
+<td>SUBSTR</td>
+<td>截取字符串</td>
+<td>SUBSTR(“你好世界”,3,4)</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>截取字符串</td>
+<td>SUBSTRING(“你好世界”,3,2)</td>
+</tr>
+<tr>
+<td>LPAD</td>
+<td>左侧填充字符</td>
+<td>LPAD(“Hello”,10,”*”)</td>
+</tr>
+<tr>
+<td>RPAD</td>
+<td>右侧填充字符</td>
+<td>RPAD(“Hello”,10,”*”)</td>
+</tr>
+<tr>
+<td>TRIM</td>
+<td>去除首尾空格</td>
+<td>TRIM(“ 你好先生 “)</td>
+</tr>
+</tbody></table>
+<h4 id="事务机制"><a href="#事务机制" class="headerlink" title="事务机制"></a>事务机制</h4><ul>
+<li>事务是一个或者多个SQL语句组成的整体，要么全部执行成功，要<br>么全都执行失败<br><img src="https://gitee.com/bixbycell/article-images/raw/master/article/20211109212638.png"><blockquote>
+<p>默认情况下，MySQL执行每条SQL语句都会自动开启和提交事务,<br>为了让多条SQL语句纳入到一个事务之下，可以手动管理事务<br>START TRANSACTION ;<br>SQL语句<br>[ COMMIT | ROLLBACK ] ;</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="事务的ACID属性"><a href="#事务的ACID属性" class="headerlink" title="事务的ACID属性"></a>事务的ACID属性</h5><ul>
+<li>事务的原子性:一个事务中的所有操作要么全部完成，要么全部失败。事务执行后，不允许停留在中间某个状态。</li>
+<li>事务的一致性:不管在任何给定的时间、并发事务有多少，事务必须保证运行结果的一致性，事务可以并发执行，但是最终MySQL却串行执行。</li>
+<li>隔离性:隔离性要求事务不受其他并发事务的影响，如同在给定的时间内，该事务是数据库唯一运行的事物。</li>
+<li>持久性:事务一旦提交，结果便是永久性的。即便发生宕机，仍然可以依靠<br>事务日志完成数据的持久化。</li>
+</ul>
+<h5 id="事务的四个隔离级别"><a href="#事务的四个隔离级别" class="headerlink" title="事务的四个隔离级别"></a>事务的四个隔离级别</h5><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>隔离级别</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>read uncommitted</td>
+<td>读取未提交数据</td>
+</tr>
+<tr>
+<td>2</td>
+<td>read committed</td>
+<td>读取已提交数据</td>
+</tr>
+<tr>
+<td>3</td>
+<td>repeatable read</td>
+<td>重复读取</td>
+</tr>
+<tr>
+<td>4</td>
+<td>serializable</td>
+<td>序列化</td>
+</tr>
+</tbody></table>
+<h5 id="导出SQL文件"><a href="#导出SQL文件" class="headerlink" title="导出SQL文件"></a>导出SQL文件</h5><ul>
+<li>mysqldump用来把业务数据导出成SQL文件，其中也包括了表结构<blockquote>
+<p>mysqldump -uroot -p [ no-data ] 逻辑库 &gt; 路径</p>
+</blockquote>
+<h5 id="导入SQL文件"><a href="#导入SQL文件" class="headerlink" title="导入SQL文件"></a>导入SQL文件</h5></li>
+<li>source命令用于导入SQL文件，包括创建数据表，写入记录等<blockquote>
+<p>sql &gt; USE demo ;<br>sql &gt; SOURCE backup.sql ;</p>
+</blockquote>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">bixby</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://bixby-cell.github.io/2021/08/18/MySQL-mysqlstudy/">https://bixby-cell.github.io/2021/08/18/MySQL-mysqlstudy/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bixby-cell.github.io" target="_blank">bixby博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/18/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95485-leetcode485maxconsecutiveones/"><img class="prev-cover" src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LeetCode刷题记录485</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/18/Spring%20Study%20Start%20Guide-02-springstudystartguide-02/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring Study Start Guide-02</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/34.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">bixby</div><div class="author-info__description">学有所成</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://bixby-cell.github.io" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1439381768@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">MySQL函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">获取系统时间函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">日期格式化函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">字符函数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text">事务机制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84ACID%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">事务的ACID属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">4.2.</span> <span class="toc-text">事务的四个隔离级别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%BC%E5%87%BASQL%E6%96%87%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text">导出SQL文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5SQL%E6%96%87%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text">导入SQL文件</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" title="自动化测试"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自动化测试"/></a><div class="content"><a class="title" href="/2021/11/02/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" title="自动化测试">自动化测试</a><time datetime="2021-11-02T08:02:52.628Z" title="发表于 2021-11-02 16:02:52">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/13/System/" title="计算机基础"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机基础"/></a><div class="content"><a class="title" href="/2021/09/13/System/" title="计算机基础">计算机基础</a><time datetime="2021-09-13T13:48:18.850Z" title="发表于 2021-09-13 21:48:18">2021-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/10/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="Java垃圾回收"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java垃圾回收"/></a><div class="content"><a class="title" href="/2021/09/10/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="Java垃圾回收">Java垃圾回收</a><time datetime="2021-09-10T03:20:44.515Z" title="发表于 2021-09-10 11:20:44">2021-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/23/interview/" title="final, static, this, super关键字"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="final, static, this, super关键字"/></a><div class="content"><a class="title" href="/2021/08/23/interview/" title="final, static, this, super关键字">final, static, this, super关键字</a><time datetime="2021-08-23T02:54:09.948Z" title="发表于 2021-08-23 10:54:09">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/18/Git%E4%BD%BF%E7%94%A8-git-use/" title="Git使用"><img src="https://cdn.pixabay.com/photo/2020/01/03/20/29/rock-4739036_960_720.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git使用"/></a><div class="content"><a class="title" href="/2021/08/18/Git%E4%BD%BF%E7%94%A8-git-use/" title="Git使用">Git使用</a><time datetime="2021-08-18T12:27:48.000Z" title="发表于 2021-08-18 20:27:48">2021-08-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By bixby</div><div class="footer_custom_text">Hi, welcome to my <a href="https://bixby-cell.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
